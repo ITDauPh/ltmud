@@ -4,15 +4,20 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import message.Message;
+
 public class Server {
 	private static ServerSocket server = null;
+	// có thể có nhiều kết nối cùng 1 lúc, nhiều socket, nhiều client, dùng Thread để xử lí
 	private static Socket socket = null;
-	private static BufferedReader in = null;
-	private static BufferedWriter out = null;
+	private ObjectInputStream is = null;
+	private ObjectOutputStream os = null;
 	
 	public Server() {
 		try {
@@ -23,31 +28,37 @@ public class Server {
 		}		
 	}
 	
-	public String acceptRes() {
-		String line = "";
+	public Message acceptRes() {
+		Message message = null;
 		try {
 			socket = server.accept();
+			os = new ObjectOutputStream(socket.getOutputStream());
+			is = new ObjectInputStream(socket.getInputStream());			
 			System.out.println("Client connected...");
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			
-			// Server nhận dữ liệu từ client qua stream
-			line = in.readLine();
-			System.out.println("Server get: " + line);
-			
-			// Server gửi phản hồi ngược lại cho client (chuỗi đảo ngược)
-//			out.write(line);
-//			out.newLine();
-//			out.flush();
+
+			// Server nhận dữ liệu từ client
+			message = (Message) is.readObject();
+			System.out.println("Server received: " + message);
 		
 			System.out.println("Server closed connection");
-			in.close();
-			out.close();
+		} catch (IOException | ClassNotFoundException e) {
+			System.err.println(e);
+		}
+		return message;
+	}
+	
+	public void close() {
+		System.out.println("Server shutdown...");
+		try {
+			os.close();
 			socket.close();
 			server.close();
+			is.close();
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
-		return line;
+	}
+	
+	public static void main(String[] args) {
+		new Server().acceptRes();
 	}
 }

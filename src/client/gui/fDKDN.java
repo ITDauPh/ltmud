@@ -90,8 +90,6 @@ public class fDKDN extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		
-		
 		JButton btndn = new JButton("\u0110\u0103ng nh\u1EADp");
 		btndn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,7 +101,6 @@ public class fDKDN extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "E", JOptionPane.ERROR_MESSAGE);
 					}
-					
 				} else {
 					panel.removeAll();
 					panel.add(pdn);
