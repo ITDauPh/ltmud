@@ -69,6 +69,5 @@ public class fStart extends JFrame {
 		});
 		btnNewButton.setBounds(0, 11, 89, 23);
 		panel_1.add(btnNewButton);
-		
 	}
 }

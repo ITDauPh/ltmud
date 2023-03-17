@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import client.service.ServerConnection;
+import client.service.Server;
+import server.database.DatabaseConnection;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ public class fDKDN extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField username;
 	private JPasswordField password;
-	protected ServerConnection server;
+	protected Server server;
 
 	/**
 	 * Launch the application.
@@ -96,7 +97,7 @@ public class fDKDN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(panel.getComponent(0).equals(pdn)) {
 					System.out.println("dang nhap");
-					server = new client.service.ServerConnection();
+					server = new client.service.Server();
 					if(server.dangNhap(username.getText(), password.getText())) {
 						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "S", JOptionPane.INFORMATION_MESSAGE);
 					} else {

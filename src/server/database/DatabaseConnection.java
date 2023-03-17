@@ -1,10 +1,10 @@
-package client.service;
+package server.database;
 import java.sql.*;  
 
-public class ServerConnection {
+public class DatabaseConnection {
 	private Connection con = null;
 	
-	public ServerConnection() {
+	public DatabaseConnection() {
 		if(con == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
