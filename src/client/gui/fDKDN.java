@@ -4,7 +4,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import client.service.ServerConnection;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,8 +21,9 @@ public class fDKDN extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField username;
+	private JPasswordField password;
+	protected ServerConnection server;
 
 	/**
 	 * Launch the application.
@@ -58,18 +63,18 @@ public class fDKDN extends JFrame {
 		lblNewLabel.setBounds(31, 109, 87, 14);
 		pdn.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(128, 106, 233, 20);
-		pdn.add(textField);
-		textField.setColumns(10);
+		username = new JTextField();
+		username.setBounds(128, 106, 233, 20);
+		pdn.add(username);
+		username.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setBounds(33, 152, 85, 14);
 		pdn.add(lblNewLabel_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(128, 149, 233, 20);
-		pdn.add(passwordField);
+		password = new JPasswordField();
+		password.setBounds(128, 149, 233, 20);
+		pdn.add(password);
 		
 		JLabel lblNewLabel_2 = new JLabel("\u0110\u0103ng nh\u1EADp");
 		lblNewLabel_2.setBounds(166, 44, 101, 20);
@@ -89,9 +94,16 @@ public class fDKDN extends JFrame {
 		JButton btndn = new JButton("\u0110\u0103ng nh\u1EADp");
 		btndn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(panel.getComponent(0).equals(pdn))
+				if(panel.getComponent(0).equals(pdn)) {
 					System.out.println("dang nhap");
-				else {
+					server = new client.service.ServerConnection();
+					if(server.dangNhap(username.getText(), password.getText())) {
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "S", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "E", JOptionPane.ERROR_MESSAGE);
+					}
+					
+				} else {
 					panel.removeAll();
 					panel.add(pdn);
 					panel.repaint();
