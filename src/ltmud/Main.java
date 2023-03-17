@@ -1,6 +1,6 @@
 package ltmud;
 
-import gui.fDKDN;
+import client.gui.fDKDN;
 
 public class Main {
 
