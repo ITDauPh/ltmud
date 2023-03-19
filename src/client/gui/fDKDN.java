@@ -7,9 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import client.network.Server;
-import server.database.DatabaseConnection;
-
+import client.bus.Account;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -24,7 +22,7 @@ public class fDKDN extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField username;
 	private JPasswordField password;
-	protected Server server;
+	private client.bus.Account account;
 
 	/**
 	 * Launch the application.
@@ -41,11 +39,18 @@ public class fDKDN extends JFrame {
 			}
 		});
 	}
+	
+
+	private void init() {
+		account = new Account();
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public fDKDN() {
+		init();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 386);
 		getContentPane().setLayout(null);
@@ -95,12 +100,15 @@ public class fDKDN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(panel.getComponent(0).equals(pdn)) {
 					System.out.println("dang nhap");
-					server = new client.network.Server();
-					if(server.dangNhap(username.getText(), password.getText())) {
+					
+					// ---------------------------------------------
+					if(account.dangNhap(username.getText(), password.getText())) {
 						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công", JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "Thất bại", JOptionPane.ERROR_MESSAGE);
 					}
+					// ---------------------------------------------
+					
 				} else {
 					panel.removeAll();
 					panel.add(pdn);
