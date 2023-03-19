@@ -100,6 +100,6 @@ public class fStart extends JFrame {
 	}
 	
 	public void HandleMessage(Message message) {
-		this.status.setText("new user connected: " + message);
+		this.status.setText(this.status.getText() + "\nnew user connected: " + message);
 	}
 }

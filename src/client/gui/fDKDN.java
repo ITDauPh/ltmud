@@ -13,6 +13,8 @@ import client.bus.AccountBUS;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
@@ -43,6 +45,13 @@ public class fDKDN extends JFrame {
 
 	private void init() {
 		this.account = new AccountBUS();
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				account.close();
+				super.windowClosed(e);
+			}
+		});
 	}
 
 	/**

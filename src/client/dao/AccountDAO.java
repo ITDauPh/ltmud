@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import client.dto.AccountDTO;
 import client.network.Client;
 import message.Message;
+import message.dto.AccountDTO;
 
 public class AccountDAO {
 	private client.network.Client clientConnection; 
@@ -30,5 +30,9 @@ public class AccountDAO {
 	public boolean isConnected() {
 		Socket socket = clientConnection.getSocket();
 		return socket != null && socket.isConnected();
+	}
+	
+	public void close() {
+		clientConnection.close();
 	}
 }

@@ -1,12 +1,10 @@
-package client.dto;
+package message.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
 
+// gửi thông tin tài khoản giữa client và server
 public class AccountDTO implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String ho;
@@ -19,10 +17,6 @@ public class AccountDTO implements Serializable {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getHo() {

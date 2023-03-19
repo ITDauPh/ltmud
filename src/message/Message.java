@@ -2,12 +2,13 @@ package message;
 
 import java.io.Serializable;
 
-import client.dto.AccountDTO;
+import message.dto.AccountDTO;
 
 // dùng để gửi qua lại giữa client và server
 public class Message implements Serializable {
 	private String request;
-	// request: đăng nhập, đăng ký, ...
+	// request: đăng nhập, đăng ký, thống kê, nhận bài, gửi bài,...
+	// TODO: sửa thành interface
 	private AccountDTO account;
 
 	public Message(AccountDTO account) {

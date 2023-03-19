@@ -7,8 +7,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import client.dao.AccountDAO;
-import client.dto.AccountDTO;
 import message.Message;
+import message.dto.AccountDTO;
 
 public class AccountBUS {
 	private AccountDAO client;
@@ -17,7 +17,7 @@ public class AccountBUS {
 	}
 	
 	public boolean dangNhap(String username, String password) throws UnknownHostException, IOException {
-		if(client == null || client.isConnected()) {
+		if(client == null || !client.isConnected()) {
 			connect();
 		}
 		AccountDTO account = new AccountDTO();
@@ -31,6 +31,10 @@ public class AccountBUS {
 
 	private void connect() throws UnknownHostException, IOException {
 		client = new AccountDAO();
+	}
+	
+	public void close() {
+		client.close();
 	}
 }
 
