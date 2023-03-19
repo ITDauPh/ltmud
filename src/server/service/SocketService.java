@@ -8,12 +8,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import server.gui.fStart;
+
 public class SocketService {
 	private ServerSocket ss;
 	private boolean running;
 	private SocketServer handler;
 	private Thread serverThread;
 	private List<Thread> serverThreads = Collections.synchronizedList(new LinkedList());
+	
+	public SocketService() {
+		
+	}
 
 	public void serve(int port, SocketServer handler) throws IOException {
 		this.ss = new ServerSocket();
@@ -54,13 +60,13 @@ public class SocketService {
 	public void close() {
 		try {
 			running = false;
+			ss.close();
 			serverThread.join();
 			while (serverThreads.size() > 0) {
 				Thread t = (Thread) serverThreads.get(0);
 				serverThreads.remove(t);
 				t.join();
 			}
-			ss.close();
 		} catch (NullPointerException e) {
 		} catch (IOException e) {
 		} catch (InterruptedException e) {

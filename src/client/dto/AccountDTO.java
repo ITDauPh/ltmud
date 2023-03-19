@@ -1,8 +1,13 @@
 package client.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Account {
+public class AccountDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String ho;
 	private String ten;

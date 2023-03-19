@@ -7,16 +7,24 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import message.Message;
+import server.service.SimpleServer;
+import server.service.SocketServer;
+import server.service.SocketService;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.IOException;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 
 public class fStart extends JFrame {
-
 	private JPanel contentPane;
+	private JLabel status;
 
 	/**
 	 * Launch the application.
@@ -55,7 +63,7 @@ public class fStart extends JFrame {
 		panel.add(panel_2, "name_7096536115700");
 		panel_2.setLayout(null);
 
-		JLabel status = new JLabel("\u0110ang kh\u1EDFi \u0111\u1ED9ng...");
+		status = new JLabel("\u0110ang kh\u1EDFi \u0111\u1ED9ng...");
 		status.setBounds(10, 11, 414, 205);
 		panel_2.add(status);
 
@@ -72,14 +80,26 @@ public class fStart extends JFrame {
 		});
 		btnNewButton.setBounds(0, 11, 89, 23);
 		panel_1.add(btnNewButton);
-		System.out.println("HERE");
-
-		Runnable server = new Runnable() {
-			public void run() {
-				Message message = new server.service.Server().acceptRes();
-				status.setText("new user connected " + message.getUsername());
+		
+		
+		// setup server
+		SocketService server = new SocketService();
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				server.close();
 			}
-		};
-		new Thread(server).start();
+		});
+		
+		try {
+			server.serve(9990, new SimpleServer(this));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void HandleMessage(Message message) {
+		this.status.setText("new user connected: " + message);
 	}
 }

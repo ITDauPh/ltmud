@@ -1,36 +1,55 @@
 package client.network;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
-
-import message.Message;
+import java.net.UnknownHostException;
 
 public class Client {
-	private Socket socket = null;
-	private ObjectInputStream is = null;
-	private ObjectOutputStream os = null;
-	private BufferedReader stdin = null;
+	private Socket socket;
+	private ObjectInputStream is;
+	private ObjectOutputStream os;
 
-	public Client() {
-		stdin = new BufferedReader(new InputStreamReader(System.in));
+	public Client() throws UnknownHostException, IOException {
+		socket = new Socket("127.0.0.1", 9990);
+		os = new ObjectOutputStream(socket.getOutputStream());
+		is = new ObjectInputStream(socket.getInputStream());
+	}
+
+	public ObjectInputStream getIs() {
+		return is;
+	}
+
+	public ObjectOutputStream getOs() {
+		return os;
 	}
 
 	public void close() {
 		try {
 			os.close();
-			socket.close();
 			is.close();
+			socket.close();
 		} catch (IOException e) {
 		}
 	}
 
+	public Socket getSocket() {
+		return socket;
+	}
+
+	public void setSocket(Socket socket) {
+		this.socket = socket;
+	}
+	
+	public void send(Object o) throws IOException {
+		os.writeObject(o);
+	}
+	
+	public void receive() {
+		
+	}
+	
 //	public boolean dangNhap(String username, String password) {
 //		try {
 //			socket = new Socket("localhost", 8000);

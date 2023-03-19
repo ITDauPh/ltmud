@@ -1,6 +1,7 @@
 package client.gui;
 
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,10 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import client.bus.Account;
+import client.bus.AccountBUS;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -20,7 +23,7 @@ public class fDKDN extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField username;
 	private JPasswordField password;
-	private client.bus.Account account;
+	private client.bus.AccountBUS account;
 
 	/**
 	 * Launch the application.
@@ -39,7 +42,7 @@ public class fDKDN extends JFrame {
 	}
 
 	private void init() {
-		account = new Account();
+		this.account = new AccountBUS();
 	}
 
 	/**
@@ -99,12 +102,15 @@ public class fDKDN extends JFrame {
 					System.out.println("dang nhap");
 
 					// ---------------------------------------------
-					if (account.dangNhap(username.getText(), password.getText())) {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công",
-								JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "Thất bại",
-								JOptionPane.ERROR_MESSAGE);
+					try {
+						if (account.dangNhap(username.getText(), password.getText())) {
+							JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							throw new IOException("Sai mật khẩu");
+						}
+					} catch (HeadlessException | IOException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại\n" + e1, "Thất bại", JOptionPane.ERROR_MESSAGE);
 					}
 					// ---------------------------------------------
 
