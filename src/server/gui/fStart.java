@@ -45,25 +45,25 @@ public class fStart extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 227);
 		contentPane.add(panel);
 		panel.setLayout(new CardLayout(0, 0));
-		
+
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, "name_7096536115700");
 		panel_2.setLayout(null);
-		
+
 		JLabel status = new JLabel("\u0110ang kh\u1EDFi \u0111\u1ED9ng...");
 		status.setBounds(10, 11, 414, 205);
 		panel_2.add(status);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 228, 434, 33);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Tr\u1EDF v\u1EC1");
 		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -73,14 +73,13 @@ public class fStart extends JFrame {
 		btnNewButton.setBounds(0, 11, 89, 23);
 		panel_1.add(btnNewButton);
 		System.out.println("HERE");
-		
-		Runnable server =
-				new Runnable() {
-					public void run() {
-						Message message = new server.service.Server().acceptRes();
-						status.setText("new user connected " + message.getUsername());
-					}
-				};
+
+		Runnable server = new Runnable() {
+			public void run() {
+				Message message = new server.service.Server().acceptRes();
+				status.setText("new user connected " + message.getUsername());
+			}
+		};
 		new Thread(server).start();
 	}
 }

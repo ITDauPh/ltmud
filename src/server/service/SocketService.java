@@ -10,18 +10,18 @@ import java.util.List;
 
 public class SocketService {
 	private ServerSocket ss;
-	private Thread serverThread;
 	private boolean running;
 	private SocketServer handler;
+	private Thread serverThread;
 	private List<Thread> serverThreads = Collections.synchronizedList(new LinkedList());
 
 	public void serve(int port, SocketServer handler) throws IOException {
-		ss = new ServerSocket();
-		ss.setReuseAddress(true);
-		ss.bind(new InetSocketAddress(port));
+		this.ss = new ServerSocket();
+		this.ss.setReuseAddress(true);
+		this.ss.bind(new InetSocketAddress(port));
 		this.handler = handler;
-		serverThread = makeServerThread();
-		serverThread.start();
+		this.serverThread = makeServerThread();
+		this.serverThread.start();
 	}
 
 	private Thread makeServerThread() {
@@ -54,14 +54,13 @@ public class SocketService {
 	public void close() {
 		try {
 			running = false;
-			Thread.sleep(100);
-			ss.close();
 			serverThread.join();
 			while (serverThreads.size() > 0) {
 				Thread t = (Thread) serverThreads.get(0);
 				serverThreads.remove(t);
 				t.join();
 			}
+			ss.close();
 		} catch (NullPointerException e) {
 		} catch (IOException e) {
 		} catch (InterruptedException e) {

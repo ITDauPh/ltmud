@@ -1,4 +1,5 @@
 package client.gui;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,9 +17,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 
 public class fDKDN extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField username;
 	private JPasswordField password;
@@ -39,7 +37,6 @@ public class fDKDN extends JFrame {
 			}
 		});
 	}
-	
 
 	private void init() {
 		account = new Account();
@@ -50,65 +47,67 @@ public class fDKDN extends JFrame {
 	 */
 	public fDKDN() {
 		init();
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 386);
 		getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 11, 414, 287);
 		getContentPane().add(panel);
 		panel.setLayout(new CardLayout());
-		
+
 		JPanel pdn = new JPanel();
 		pdn.setBackground(Color.WHITE);
 		panel.add(pdn, "name_15343481437400");
 		pdn.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Username");
 		lblNewLabel.setBounds(31, 109, 87, 14);
 		pdn.add(lblNewLabel);
-		
+
 		username = new JTextField();
 		username.setBounds(114, 106, 264, 20);
 		pdn.add(username);
 		username.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setBounds(31, 152, 85, 14);
 		pdn.add(lblNewLabel_1);
-		
+
 		password = new JPasswordField();
 		password.setBounds(114, 149, 264, 20);
 		pdn.add(password);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("\u0110\u0103ng nh\u1EADp");
 		lblNewLabel_2.setBounds(166, 44, 101, 20);
 		pdn.add(lblNewLabel_2);
-		
+
 		JPanel pdk = new JPanel();
 		pdk.setBackground(Color.WHITE);
 		panel.add(pdk, "name_15361792369100");
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 296, 414, 40);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JButton btndn = new JButton("\u0110\u0103ng nh\u1EADp");
 		btndn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(panel.getComponent(0).equals(pdn)) {
+				if (panel.getComponent(0).equals(pdn)) {
 					System.out.println("dang nhap");
-					
+
 					// ---------------------------------------------
-					if(account.dangNhap(username.getText(), password.getText())) {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công", JOptionPane.INFORMATION_MESSAGE);
+					if (account.dangNhap(username.getText(), password.getText())) {
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công",
+								JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "Thất bại", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "Thất bại",
+								JOptionPane.ERROR_MESSAGE);
 					}
 					// ---------------------------------------------
-					
+
 				} else {
 					panel.removeAll();
 					panel.add(pdn);
@@ -119,11 +118,11 @@ public class fDKDN extends JFrame {
 		});
 		btndn.setBounds(293, 11, 111, 23);
 		panel_1.add(btndn);
-		
+
 		JButton btndk = new JButton("\u0110\u0103ng k\u00FD");
 		btndk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(panel.getComponent(0).equals(pdk))
+				if (panel.getComponent(0).equals(pdk))
 					System.out.println("dang ky");
 				else {
 					panel.removeAll();

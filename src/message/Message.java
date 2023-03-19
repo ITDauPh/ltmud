@@ -7,14 +7,14 @@ import java.io.Serializable;
 public class Message implements Serializable {
 	private String request;
 	// request: đăng nhập, đăng ký, ...
-	
+
 	private String username;
 	private String password;
-	
+
 	// gioi tinh, ngay sinh, ...
-	
+
 	public static void main(String[] args) {
-		
+
 	}
 
 	public Message(String username, String password) {
@@ -46,7 +46,7 @@ public class Message implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String toString() {
 		return username + " " + password;
 	}

@@ -17,11 +17,11 @@ public class Client {
 	private ObjectInputStream is = null;
 	private ObjectOutputStream os = null;
 	private BufferedReader stdin = null;
-	
+
 	public Client() {
 		stdin = new BufferedReader(new InputStreamReader(System.in));
 	}
-	
+
 	public void close() {
 		try {
 			os.close();
@@ -30,7 +30,7 @@ public class Client {
 		} catch (IOException e) {
 		}
 	}
-	
+
 //	public boolean dangNhap(String username, String password) {
 //		try {
 //			socket = new Socket("localhost", 8000);
