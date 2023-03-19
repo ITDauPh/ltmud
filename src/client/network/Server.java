@@ -1,4 +1,4 @@
-package client.service;
+package client.network;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -49,10 +49,5 @@ public class Server {
 			is.close();
 		} catch (IOException e) {
 		}
-	}
-	
-	
-	public static void main(String[] args) {
-		new Server().dangNhap("nva", "nva");
 	}
 }

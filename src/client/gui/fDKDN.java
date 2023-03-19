@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import client.service.Server;
+import client.network.Server;
 import server.database.DatabaseConnection;
 
 import javax.swing.JPasswordField;
@@ -51,7 +51,7 @@ public class fDKDN extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 414, 265);
+		panel.setBounds(10, 11, 414, 287);
 		getContentPane().add(panel);
 		panel.setLayout(new CardLayout());
 		
@@ -65,16 +65,16 @@ public class fDKDN extends JFrame {
 		pdn.add(lblNewLabel);
 		
 		username = new JTextField();
-		username.setBounds(128, 106, 233, 20);
+		username.setBounds(114, 106, 264, 20);
 		pdn.add(username);
 		username.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(33, 152, 85, 14);
+		lblNewLabel_1.setBounds(31, 152, 85, 14);
 		pdn.add(lblNewLabel_1);
 		
 		password = new JPasswordField();
-		password.setBounds(128, 149, 233, 20);
+		password.setBounds(114, 149, 264, 20);
 		pdn.add(password);
 		
 		JLabel lblNewLabel_2 = new JLabel("\u0110\u0103ng nh\u1EADp");
@@ -86,7 +86,7 @@ public class fDKDN extends JFrame {
 		panel.add(pdk, "name_15361792369100");
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 277, 414, 59);
+		panel_1.setBounds(10, 296, 414, 40);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -95,11 +95,11 @@ public class fDKDN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(panel.getComponent(0).equals(pdn)) {
 					System.out.println("dang nhap");
-					server = new client.service.Server();
+					server = new client.network.Server();
 					if(server.dangNhap(username.getText(), password.getText())) {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "S", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công", JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "E", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại", "Thất bại", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
 					panel.removeAll();
@@ -109,7 +109,7 @@ public class fDKDN extends JFrame {
 				}
 			}
 		});
-		btndn.setBounds(293, 36, 111, 23);
+		btndn.setBounds(293, 11, 111, 23);
 		panel_1.add(btndn);
 		
 		JButton btndk = new JButton("\u0110\u0103ng k\u00FD");
@@ -125,7 +125,7 @@ public class fDKDN extends JFrame {
 				}
 			}
 		});
-		btndk.setBounds(172, 36, 111, 23);
+		btndk.setBounds(174, 11, 111, 23);
 		panel_1.add(btndk);
 	}
 }
