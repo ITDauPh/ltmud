@@ -1,7 +1,6 @@
 package client.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
@@ -25,22 +24,15 @@ import javax.swing.border.EmptyBorder;
 import client.bus.AccountBUS;
 
 public class fDangNhap extends JPanel {
-	private JPanel panel;
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(new ImageIcon("img\\login.jpg").getImage(), 0, 0, null);
-	}
 
 	/**
 	 * Create the panel.
 	 */
 	public fDangNhap(AccountBUS accountBus, JPanel rootPane) {
 		init(rootPane);
-		
+
 		setBorder(new EmptyBorder(5, 5, 13, 5));
 		setLayout(new BorderLayout(0, 0));
 
@@ -54,7 +46,7 @@ public class fDangNhap extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// ---------------------------------------------
 //				Container parent = panel.getRootPane();
-				
+
 				rootPane.removeAll();
 				rootPane.add(new fDangKy(accountBus, rootPane));
 				rootPane.revalidate();
@@ -111,8 +103,7 @@ public class fDangNhap extends JPanel {
 						}
 					} catch (HeadlessException | IOException e1) {
 						e1.printStackTrace();
-						JOptionPane.showMessageDialog(panel, e1, "Thất bại",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panel, e1, "Thất bại", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				// ---------------------------------------------

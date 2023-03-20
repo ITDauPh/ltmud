@@ -14,6 +14,6 @@ public class Main implements Runnable {
 	@Override
 	public void run() {
 		fMain frame = new fMain(new AccountBUS());
-		frame.setVisible(true);		
+		frame.setVisible(true);
 	}
 }
