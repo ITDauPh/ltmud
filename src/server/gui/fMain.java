@@ -80,9 +80,6 @@ public class fMain extends JFrame {
 		if (text.equalsIgnoreCase("chờ kết nối"))
 			text = "new user connected: ";
 		
-		if (message.getRequest().equalsIgnoreCase("dangnhap"))
-			this.status.setText(text + message);
-		else
-			System.out.println("broken message received");
+		this.status.setText(text + " " + message);
 	}
 }

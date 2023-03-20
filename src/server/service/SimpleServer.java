@@ -35,8 +35,10 @@ public class SimpleServer implements SocketServer {
 		
 			while(clientSocket.isConnected()) {
 				message = (Message) is.readObject();
-				System.out.println("Server received account " + message);
-				this.frame.HandleMessage(message);
+				if(message.getRequest().equalsIgnoreCase("dangnhap")) {
+					this.frame.HandleMessage(message);
+					System.out.println("Server received login request from " + message);
+				}
 			}
 			close();
 			System.out.println("Server closed connection with " + message);
