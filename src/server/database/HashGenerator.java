@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashGenerator {
-	
+
 	public static String get(String password) {
 		MessageDigest md5;
 		try {
@@ -16,12 +16,12 @@ public class HashGenerator {
 			String sum = no.toString(16);
 			// thêm vào đầu số 0 cho đủ 32 byte
 			while (sum.length() < 32) {
-                sum = "0" + sum;
-            }
+				sum = "0" + sum;
+			}
 			return sum;
-		} catch (NoSuchAlgorithmException e) {	
+		} catch (NoSuchAlgorithmException e) {
 		}
-		
+
 		return null;
 	}
 }

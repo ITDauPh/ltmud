@@ -41,15 +41,15 @@ public class Client {
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
-	
+
 	public void send(Object o) throws IOException {
 		os.writeObject(o);
 	}
-	
+
 	public void receive() {
-		
+
 	}
-	
+
 //	public boolean dangNhap(String username, String password) {
 //		try {
 //			socket = new Socket("localhost", 8000);

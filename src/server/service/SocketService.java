@@ -8,17 +8,15 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import server.gui.fStart;
-
 public class SocketService {
 	private ServerSocket ss;
 	private boolean running;
 	private SocketServer handler;
 	private Thread serverThread;
 	private List<Thread> serverThreads = Collections.synchronizedList(new LinkedList());
-	
+
 	public SocketService() {
-		
+
 	}
 
 	public void serve(int port, SocketServer handler) throws IOException {

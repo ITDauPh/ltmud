@@ -15,7 +15,7 @@ public class Message implements Serializable {
 		this.request = "đăng nhập";
 		this.account = account;
 	}
-	
+
 	public AccountDTO getAccount() {
 		return account;
 	}

@@ -1,25 +1,24 @@
 package client.gui;
 
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import client.bus.AccountBUS;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.net.UnknownHostException;
-import java.awt.event.ActionEvent;
-import java.awt.CardLayout;
-import java.awt.Color;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import client.bus.AccountBUS;
 
 public class fDKDN extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -113,13 +112,15 @@ public class fDKDN extends JFrame {
 					// ---------------------------------------------
 					try {
 						if (account.dangNhap(username.getText(), password.getText())) {
-							JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công",
+									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							throw new IOException("Sai mật khẩu");
 						}
 					} catch (HeadlessException | IOException e1) {
 						e1.printStackTrace();
-						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại\n" + e1, "Thất bại", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(panel, "Đăng nhập thất bại\n" + e1, "Thất bại",
+								JOptionPane.ERROR_MESSAGE);
 					}
 					// ---------------------------------------------
 

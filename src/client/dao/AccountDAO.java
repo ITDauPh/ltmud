@@ -9,12 +9,12 @@ import message.Message;
 import message.dto.AccountDTO;
 
 public class AccountDAO {
-	private client.network.Client clientConnection; 
-	
+	private client.network.Client clientConnection;
+
 	public AccountDAO() throws UnknownHostException, IOException {
 		this.clientConnection = new Client();
 	}
-	
+
 	public AccountDTO dangNhap(AccountDTO account) {
 		Message message = new Message(account);
 		try {
@@ -31,7 +31,7 @@ public class AccountDAO {
 		Socket socket = clientConnection.getSocket();
 		return socket != null && socket.isConnected();
 	}
-	
+
 	public void close() {
 		clientConnection.close();
 	}

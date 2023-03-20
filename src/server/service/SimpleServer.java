@@ -1,13 +1,8 @@
 package server.service;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 import message.Message;
@@ -19,7 +14,7 @@ public class SimpleServer implements SocketServer {
 	private ObjectInputStream is;
 	private ObjectOutputStream os;
 	private fStart frame;
-	
+
 //	public Message acceptRes() {
 //		Message message = null;
 //		try {
@@ -38,9 +33,9 @@ public class SimpleServer implements SocketServer {
 //		return message;
 //	}
 
-	public SimpleServer() {	
+	public SimpleServer() {
 	}
-	
+
 	public SimpleServer(fStart frame) {
 		this.frame = frame;
 	}
@@ -49,15 +44,15 @@ public class SimpleServer implements SocketServer {
 	public void serve(Socket clientSocket) {
 		Message message = null;
 		this.clientSocket = clientSocket;
-		
+
 		System.out.println("Server received a request");
-		
+
 		try {
 			os = new ObjectOutputStream(clientSocket.getOutputStream());
 			is = new ObjectInputStream(clientSocket.getInputStream());
-			
+
 			message = (Message) is.readObject();
-			
+
 			this.frame.HandleMessage(message);
 			close();
 		} catch (IOException | ClassNotFoundException e) {
@@ -65,7 +60,7 @@ public class SimpleServer implements SocketServer {
 		}
 		System.out.println("Server received: " + message);
 	}
-	
+
 	public void close() {
 		try {
 			is.close();

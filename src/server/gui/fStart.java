@@ -1,26 +1,22 @@
 package server.gui;
 
+import java.awt.CardLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import message.Message;
 import server.service.SimpleServer;
-import server.service.SocketServer;
 import server.service.SocketService;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.IOException;
-import java.net.Socket;
-import java.awt.event.ActionEvent;
-import java.awt.CardLayout;
-import javax.swing.JLabel;
 
 public class fStart extends JFrame {
 	private JPanel contentPane;
@@ -80,25 +76,24 @@ public class fStart extends JFrame {
 		});
 		btnNewButton.setBounds(0, 11, 89, 23);
 		panel_1.add(btnNewButton);
-		
-		
+
 		// setup server
 		SocketService server = new SocketService();
-		
+
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				server.close();
 			}
 		});
-		
+
 		try {
 			server.serve(9990, new SimpleServer(this));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void HandleMessage(Message message) {
 		this.status.setText(this.status.getText() + "\nnew user connected: " + message);
 	}
