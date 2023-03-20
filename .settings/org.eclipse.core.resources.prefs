@@ -1,6 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/client/gui/fDKDN.java=UTF-8
-encoding//src/client/gui/fDangNhap.java=UTF-8
 encoding//src/client/network/Client.java=UTF-8
 encoding//src/message/Message.java=UTF-8
 encoding//src/message/dto/AccountDTO.java=UTF-8
