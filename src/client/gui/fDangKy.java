@@ -28,8 +28,8 @@ public class fDangKy extends JPanel {
 	private JTextField txtHo;
 	private JTextField txtTen;
 	private ButtonGroup gender;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtEmail;
+	private JTextField txtOTP;
 
 	/**
 	 * Create the panel.
@@ -88,14 +88,14 @@ public class fDangKy extends JPanel {
 		txtTen.setColumns(10);
 		panel.add(txtTen);
 
-		JDateChooser dateChooser = new JDateChooser();
-		sl_panel.putConstraint(SpringLayout.NORTH, dateChooser, 13, SpringLayout.SOUTH, txtTen);
-		sl_panel.putConstraint(SpringLayout.WEST, dateChooser, 0, SpringLayout.WEST, txtUsername);
-		sl_panel.putConstraint(SpringLayout.EAST, dateChooser, -235, SpringLayout.EAST, panel);
-		panel.add(dateChooser);
+		JDateChooser txtNgaySinh = new JDateChooser();
+		sl_panel.putConstraint(SpringLayout.NORTH, txtNgaySinh, 13, SpringLayout.SOUTH, txtTen);
+		sl_panel.putConstraint(SpringLayout.WEST, txtNgaySinh, 0, SpringLayout.WEST, txtUsername);
+		sl_panel.putConstraint(SpringLayout.EAST, txtNgaySinh, -235, SpringLayout.EAST, panel);
+		panel.add(txtNgaySinh);
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Nam");
-		sl_panel.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton, 13, SpringLayout.SOUTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton, 13, SpringLayout.SOUTH, txtNgaySinh);
 		sl_panel.putConstraint(SpringLayout.WEST, rdbtnNewRadioButton, 0, SpringLayout.WEST, txtUsername);
 		panel.add(rdbtnNewRadioButton);
 
@@ -114,9 +114,9 @@ public class fDangKy extends JPanel {
 		gender.add(rdbtnN);
 		gender.add(rdbtnKhc);
 
-		JButton btnNewButton = new JButton("Đăng nhập");
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -27, SpringLayout.SOUTH, panel);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnDangNhap = new JButton("Đăng nhập");
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnDangNhap, -27, SpringLayout.SOUTH, panel);
+		btnDangNhap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rootPane.removeAll();
 				rootPane.add(new fDangNhap(accountBus, rootPane));
@@ -124,11 +124,11 @@ public class fDangKy extends JPanel {
 				rootPane.repaint();
 			}
 		});
-		panel.add(btnNewButton);
+		panel.add(btnDangNhap);
 
 		JButton btnngK = new JButton("Đăng ký");
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -6, SpringLayout.WEST, btnngK);
-		sl_panel.putConstraint(SpringLayout.NORTH, btnngK, 0, SpringLayout.NORTH, btnNewButton);
+		sl_panel.putConstraint(SpringLayout.EAST, btnDangNhap, -6, SpringLayout.WEST, btnngK);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnngK, 0, SpringLayout.NORTH, btnDangNhap);
 		sl_panel.putConstraint(SpringLayout.EAST, btnngK, 0, SpringLayout.EAST, lblNewLabel);
 		panel.add(btnngK);
 
@@ -150,7 +150,7 @@ public class fDangKy extends JPanel {
 
 		JLabel lblNewLabel_1_1_3 = new JLabel("Ngày sinh");
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_3, 0, SpringLayout.WEST, lblNewLabel_1);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_3, 0, SpringLayout.SOUTH, dateChooser);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_3, 0, SpringLayout.SOUTH, txtNgaySinh);
 		panel.add(lblNewLabel_1_1_3);
 
 		JLabel lblNewLabel_1_1_4 = new JLabel("Giới tính");
@@ -158,31 +158,31 @@ public class fDangKy extends JPanel {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_4, 0, SpringLayout.SOUTH, rdbtnNewRadioButton);
 		panel.add(lblNewLabel_1_1_4);
 
-		textField = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField, 13, SpringLayout.SOUTH, rdbtnNewRadioButton);
-		sl_panel.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, txtUsername);
-		sl_panel.putConstraint(SpringLayout.EAST, textField, 0, SpringLayout.EAST, lblNewLabel);
-		textField.setColumns(10);
-		panel.add(textField);
+		txtEmail = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, txtEmail, 13, SpringLayout.SOUTH, rdbtnNewRadioButton);
+		sl_panel.putConstraint(SpringLayout.WEST, txtEmail, 0, SpringLayout.WEST, txtUsername);
+		sl_panel.putConstraint(SpringLayout.EAST, txtEmail, 0, SpringLayout.EAST, lblNewLabel);
+		txtEmail.setColumns(10);
+		panel.add(txtEmail);
 
-		textField_1 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -141, SpringLayout.EAST, lblNewLabel);
-		textField_1.setColumns(10);
-		panel.add(textField_1);
+		txtOTP = new JTextField();
+		sl_panel.putConstraint(SpringLayout.EAST, txtOTP, -141, SpringLayout.EAST, lblNewLabel);
+		txtOTP.setColumns(10);
+		panel.add(txtOTP);
 
 		JButton btnLyOtp = new JButton("Lấy OTP");
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 1, SpringLayout.NORTH, btnLyOtp);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 27, SpringLayout.EAST, btnLyOtp);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_1, 0, SpringLayout.SOUTH, btnLyOtp);
-		sl_panel.putConstraint(SpringLayout.NORTH, btnLyOtp, 31, SpringLayout.SOUTH, textField);
+		sl_panel.putConstraint(SpringLayout.NORTH, txtOTP, 1, SpringLayout.NORTH, btnLyOtp);
+		sl_panel.putConstraint(SpringLayout.WEST, txtOTP, 27, SpringLayout.EAST, btnLyOtp);
+		sl_panel.putConstraint(SpringLayout.SOUTH, txtOTP, 0, SpringLayout.SOUTH, btnLyOtp);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnLyOtp, 31, SpringLayout.SOUTH, txtEmail);
 		sl_panel.putConstraint(SpringLayout.WEST, btnLyOtp, 0, SpringLayout.WEST, txtUsername);
 		sl_panel.putConstraint(SpringLayout.EAST, btnLyOtp, 1, SpringLayout.EAST, rdbtnN);
 		panel.add(btnLyOtp);
 
 		JLabel lblNewLabel_1_1_4_1 = new JLabel("Email");
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_4_1, 0, SpringLayout.WEST, lblNewLabel_1);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_4_1, 0, SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1_1_4_1, -67, SpringLayout.WEST, textField);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_4_1, 0, SpringLayout.SOUTH, txtEmail);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_1_1_4_1, -67, SpringLayout.WEST, txtEmail);
 		panel.add(lblNewLabel_1_1_4_1);
 	}
 
