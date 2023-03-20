@@ -6,30 +6,34 @@ import java.net.UnknownHostException;
 import client.dao.AccountDAO;
 import message.dto.AccountDTO;
 
+// Xử lí logic, ví dụ xác nhận OTP
 public class AccountBUS {
-	private AccountDAO client;
+	private AccountDAO accountDao;
+	private AccountDTO accountDto;
 
 	public AccountBUS() {
 	}
 
 	public boolean dangNhap(String username, String password) throws UnknownHostException, IOException {
-		if (client == null || !client.isConnected()) {
+		if (accountDao == null) {
 			connect();
 		}
-		AccountDTO account = new AccountDTO();
-		account.setUsername(username);
-		account.setPassword(password);
 
-		AccountDTO result = client.dangNhap(account);
+		accountDto = accountDao.dangNhap(username, password);
 
-		return result != null;
+		return accountDto != null;
+	}
+
+	public boolean dangKy(AccountDTO accontDto) {
+		// OTP handle
+		return false;
 	}
 
 	private void connect() throws UnknownHostException, IOException {
-		client = new AccountDAO();
+		accountDao = new AccountDAO();
 	}
 
 	public void close() {
-		client.close();
+		accountDao.close();
 	}
 }

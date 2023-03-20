@@ -6,37 +6,19 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import message.Message;
-import server.gui.fStart;
+import server.gui.fMain;
 
 // handle only 1 connection
 public class SimpleServer implements SocketServer {
 	private Socket clientSocket;
 	private ObjectInputStream is;
 	private ObjectOutputStream os;
-	private fStart frame;
-
-//	public Message acceptRes() {
-//		Message message = null;
-//		try {
-//			socket = server.accept();
-//			
-//			System.out.println("Client connected...");
-//
-//			// Server nhận dữ liệu từ client
-//			message = (Message) is.readObject();
-//			System.out.println("Server received: " + message);
-//
-//			System.out.println("Server closed connection");
-//		} catch (IOException | ClassNotFoundException e) {
-//			System.err.println(e);
-//		}
-//		return message;
-//	}
+	private fMain frame;
 
 	public SimpleServer() {
 	}
 
-	public SimpleServer(fStart frame) {
+	public SimpleServer(fMain frame) {
 		this.frame = frame;
 	}
 
@@ -46,22 +28,27 @@ public class SimpleServer implements SocketServer {
 		this.clientSocket = clientSocket;
 
 		System.out.println("Server received a request");
-
+		
 		try {
 			os = new ObjectOutputStream(clientSocket.getOutputStream());
 			is = new ObjectInputStream(clientSocket.getInputStream());
-
-			message = (Message) is.readObject();
-
-			this.frame.HandleMessage(message);
+		
+			while(clientSocket.isConnected()) {
+				message = (Message) is.readObject();
+				System.out.println("Server received account " + message);
+				this.frame.HandleMessage(message);
+			}
 			close();
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Server closed connection with " + message);
+		} catch (IOException e) {
+			close();
+			System.out.println("Server closed connection with " + message);
+		} catch (ClassNotFoundException e) {
 		}
-		System.out.println("Server received: " + message);
 	}
 
 	public void close() {
+		
 		try {
 			is.close();
 			os.close();

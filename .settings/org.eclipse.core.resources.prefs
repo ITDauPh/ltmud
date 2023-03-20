@@ -4,5 +4,6 @@ encoding//src/message/Message.java=UTF-8
 encoding//src/message/dto/AccountDTO.java=UTF-8
 encoding//src/message/dto/ExamDTO.java=UTF-8
 encoding//src/server/database/HashGenerator.java=UTF-8
+encoding//src/server/dto/AccountDTO.java=UTF-8
 encoding//src/server/service/SimpleServer.java=UTF-8
 encoding//src/server/service/SocketService.java=UTF-8

@@ -2,13 +2,12 @@ package client.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.SocketException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -95,13 +94,13 @@ public class fDangNhap extends JPanel {
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					try {
-						if (accountBus.dangNhap(txtUsername.getText(), txtPassword.getText())) {
+						if (accountBus.dangNhap(username, password)) {
 							JOptionPane.showMessageDialog(panel, "Đăng nhập thành công", "Thành Công",
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							throw new IOException("Sai mật khẩu");
+							throw new Exception("Sai mật khẩu");
 						}
-					} catch (HeadlessException | IOException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(panel, e1, "Thất bại", JOptionPane.ERROR_MESSAGE);
 					}

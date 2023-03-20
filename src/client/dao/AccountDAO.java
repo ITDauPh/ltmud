@@ -4,23 +4,29 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import client.network.Client;
-import message.Message;
 import message.dto.AccountDTO;
 
+// xử lí các Message, gửi nhận các object
 public class AccountDAO {
 	private client.network.Client clientConnection;
 
 	public AccountDAO() throws UnknownHostException, IOException {
-		this.clientConnection = new Client();
+		this.clientConnection = client.dao.ConnectionDAO.getConnection();
 	}
 
-	public AccountDTO dangNhap(AccountDTO account) {
-		Message message = new Message(account);
+	public AccountDTO dangNhap(String username, String password) {
+		if (clientConnection == null)
+			return null;
+
+		AccountDTO account = new AccountDTO();
+		account.getAccount().setUsername(username);
+		account.getAccount().setUsername(password);
+		account.setRequest("dangnhap");
+
 		try {
-			this.clientConnection.send(message);
+			this.clientConnection.send(account);
 			// should get account from server
-			return message.getAccount();
+			return account;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,11 +34,15 @@ public class AccountDAO {
 	}
 
 	public boolean isConnected() {
+		if (clientConnection == null)
+			return false;
+
 		Socket socket = clientConnection.getSocket();
-		return socket != null && socket.isConnected();
+		return socket != null;
 	}
 
 	public void close() {
-		clientConnection.close();
+		if (clientConnection != null)
+			clientConnection.close();
 	}
 }
